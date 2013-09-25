@@ -28,8 +28,8 @@ public class Ciudad {
 	@Column(name="nombre")
 	private String nombre;
 	
-	@OneToMany(mappedBy="ciudad")
-	//@NotEmpty
+	@OneToMany(mappedBy="ciudad", cascade={CascadeType.ALL})
+	@NotEmpty
 	private Set<Barrio> barrios;
 	
 	@ManyToOne

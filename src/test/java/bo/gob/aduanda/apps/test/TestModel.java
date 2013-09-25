@@ -1,5 +1,7 @@
 package bo.gob.aduanda.apps.test;
 
+import java.util.HashSet;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -30,20 +32,22 @@ public class TestModel {
 			//create Departamento
 			Departamento d = new Departamento();
 			d.setNombre("La Paz");
+			d.setCiudades(new HashSet<Ciudad>());
 			
 			//create ciudad
 			Ciudad c = new Ciudad();
 			c.setNombre("La Paz");
+			c.setBarrios(new HashSet<Barrio>());
 			c.setDepartamento(d);
+			d.getCiudades().add(c);
 			
 			//create barrio
 			Barrio b = new Barrio();
-			b.setNombre("Sopocachi");
 			b.setCiudad(c);
+			b.setNombre("Sopocachi");
+			c.getBarrios().add(b);
 			
 			em.persist(d);
-			em.persist(c);
-			em.persist(b);
 			
 			em.getTransaction().commit();
 			em.close();

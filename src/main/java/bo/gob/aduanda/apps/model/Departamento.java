@@ -25,8 +25,8 @@ public class Departamento {
 	@Column(unique=true)
 	private String nombre;
 	
-	@OneToMany(mappedBy="departamento")
-	//@NotEmpty
+	@OneToMany(mappedBy="departamento", cascade={CascadeType.ALL})
+	@NotEmpty
 	private Set<Ciudad> ciudades;
 
 	public Long getId() {
