@@ -5,30 +5,31 @@
    xsi:schemaLocation="
         http://java.sun.com/xml/ns/persistence
         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-<!-- 	<persistence-unit name="jee6qs-prod">  -->
-<!-- 		<provider>org.hibernate.ejb.HibernatePersistence</provider> -->
-<!-- 		<jta-data-source>java:jboss/datasources/jee6qsDS</jta-data-source>	 -->
-<!-- 		<properties> -->
-<!-- 			<property name="hibernate.hbm2ddl.auto" value="create"/> -->
-<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" /> 			 -->
-<!--          	<property name="hibernate.show_sql" value="false"/> -->
-<!--          	<property name="hibernate.format_sql" value="true"/> -->
-<!--      	</properties> -->
-<!-- 	</persistence-unit> -->
+	<persistence-unit name="jee6qs-prod"> 
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:jboss/datasources/jee6qsDS</jta-data-source>	
+		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" /> 			
+         	<property name="hibernate.show_sql" value="false"/>
+         	<property name="hibernate.format_sql" value="true"/>
+     	</properties>
+	</persistence-unit>
 	
      <!-- If you are running in a production environment, add a managed 
          data source, this example data source is just for development and testing! -->
-      <!-- The datasource is deployed as WEB-INF/app4-ds.xml, you
+      <!-- The datasource is deploye
+      d as WEB-INF/app4-ds.xml, you
          can find it in the source at src/main/webapp/WEB-INF/app4-ds.xml -->
    
-   <persistence-unit name="jee6qs-prod">
+<!--    <persistence-unit name="jee6qs-prod"> -->
     
-      <jta-data-source>java:jboss/datasources/app4DS</jta-data-source>
-      <properties>
-         <!-- Properties for Hibernate -->
-         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
-         <property name="hibernate.show_sql" value="false" />
-      </properties>
-   </persistence-unit>
+<!--       <jta-data-source>java:jboss/datasources/app4DS</jta-data-source> -->
+<!--       <properties> -->
+<!--          Properties for Hibernate -->
+<!--          <property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
+<!--          <property name="hibernate.show_sql" value="false" /> -->
+<!--       </properties> -->
+<!--    </persistence-unit> -->
    
 </persistence>

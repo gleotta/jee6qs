@@ -219,33 +219,33 @@ public class TestModel {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jee6qs-test");
 		em = emf.createEntityManager();
 		try {
-			//Incio transaccion
-			em.getTransaction().begin();
-			
-			cargarLocalidades();
-			
-			//Imprimr localidades
-			List<Barrio> barrios = em.createQuery("select b from Barrio b").getResultList();
-			for (Barrio barrio : barrios) {
-				System.out.println("barrio: "+barrio.getNombre()+" ,ciudad "+barrio.getCiudad().getNombre()+", departamento: "+barrio.getCiudad().getDepartamento().getNombre());
-			}
-			
-			cargarOperadores();
-			//Imprimr operadores
-			List<Operador> operadores = em.createQuery("select o from Operador o").getResultList();
-			for (Operador operador : operadores) {
-				System.out.println("Operador id: "+operador.getIdentificador()+ ", operador: "+operador);
-			}
-			
-			cargarOperadoresPorAduana();
-			List<OperadorPorAduana> opds = em.createQuery("select o from OperadorPorAduana o").getResultList();
-			for (OperadorPorAduana operadorPorAduana : opds) {
-				System.out.println("Operadores por aduana:"+operadorPorAduana);
-			}
-			
-			//Departamento d = em.find(Departamento.class, 1l);
-			//em.remove(d);
-			em.getTransaction().commit();
+//			//Incio transaccion
+//			em.getTransaction().begin();
+//			
+//			cargarLocalidades();
+//			
+//			//Imprimr localidades
+//			List<Barrio> barrios = em.createQuery("select b from Barrio b").getResultList();
+//			for (Barrio barrio : barrios) {
+//				System.out.println("barrio: "+barrio.getNombre()+" ,ciudad "+barrio.getCiudad().getNombre()+", departamento: "+barrio.getCiudad().getDepartamento().getNombre());
+//			}
+//			
+//			cargarOperadores();
+//			//Imprimr operadores
+//			List<Operador> operadores = em.createQuery("select o from Operador o").getResultList();
+//			for (Operador operador : operadores) {
+//				System.out.println("Operador id: "+operador.getIdentificador()+ ", operador: "+operador);
+//			}
+//			
+//			cargarOperadoresPorAduana();
+//			List<OperadorPorAduana> opds = em.createQuery("select o from OperadorPorAduana o").getResultList();
+//			for (OperadorPorAduana operadorPorAduana : opds) {
+//				System.out.println("Operadores por aduana:"+operadorPorAduana);
+//			}
+//			
+//			//Departamento d = em.find(Departamento.class, 1l);
+//			//em.remove(d);
+//			em.getTransaction().commit();
 			
 		} catch (Exception e) {
 			em.getTransaction().rollback();
