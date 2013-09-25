@@ -1,5 +1,6 @@
 package bo.gob.aduanda.apps.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Barrio {
 	private String nombre;
 	
 	
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name="ciudad")
 	@NotNull
 	private Ciudad ciudad;

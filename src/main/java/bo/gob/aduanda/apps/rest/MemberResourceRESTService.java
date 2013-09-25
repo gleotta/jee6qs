@@ -67,7 +67,7 @@ public class MemberResourceRESTService {
     @Inject
     MemberRegistration registration;
     
-    @Inject EntityManager em;
+
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -79,7 +79,7 @@ public class MemberResourceRESTService {
     @Path("/{id:[0-9][0-9]*}")
     @Produces(MediaType.APPLICATION_JSON)
     public Member lookupMemberById(@PathParam("id") long id) {
-    	List<Operador> op = em.createQuery("select o form Operador o").getResultList();
+    	
         Member member = repository.findById(id);
         if (member == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);

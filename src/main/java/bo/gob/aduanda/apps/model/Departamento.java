@@ -2,6 +2,7 @@ package bo.gob.aduanda.apps.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Departamento {
 	private String nombre;
 	
 	@OneToMany(mappedBy="departamento")
-	@NotEmpty
+	//@NotEmpty
 	private Set<Ciudad> ciudades;
 
 	public Long getId() {

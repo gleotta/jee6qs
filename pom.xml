@@ -143,12 +143,12 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
+<!--             <exclusions> -->
+<!--                 <exclusion> -->
+<!--                     <groupId>org.slf4j</groupId> -->
+<!--                     <artifactId>slf4j-api</artifactId> -->
+<!--                 </exclusion> -->
+<!--             </exclusions> -->
         </dependency>
 
         <!-- Import the JSF API, we use provided scope as the API is included in 
@@ -199,6 +199,23 @@
             <scope>test</scope>
         </dependency>
 
+<!--         <dependency> -->
+<!--         	<groupId>org.jboss.as</groupId> -->
+<!--         	<artifactId>jboss-as-standalone-client</artifactId> -->
+<!--         	<version>7.0.0.Alpha1</version> -->
+<!--         </dependency> -->
+        <dependency>
+        	<groupId>org.hibernate</groupId>
+        	<artifactId>hibernate-entitymanager</artifactId>
+        	 <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.1-901.jdbc4</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
