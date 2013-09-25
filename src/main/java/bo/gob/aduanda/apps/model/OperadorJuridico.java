@@ -3,20 +3,45 @@ package bo.gob.aduanda.apps.model;
 import java.util.Date;
 import java.util.Set;
 
-public class OperadorJuridico extends Operador{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name="OPERADOR_JURIDICO")
+public class OperadorJuridico extends Operador{
+	
+	@NotNull
+	@Column(unique=true)
 	private String nit;
 	
+	@NotNull
 	private String razonSocial;
 	
+	@ManyToOne
 	private Domicilio domicilioFisico;
 	
 	private Date fechaConstitucion;
 	
 	private Integer cantidadEmpleados;
 	
+	@OneToMany(mappedBy="empleador")
 	private Set<OperadorNatural> operadores;
 	
+	public OperadorJuridico() {
+		
+	}
+	
+	public OperadorJuridico(String nit) {
+		super();
+		this.nit = nit;
+	}
+
 	@Override
 	public String getIdentificador() {
 		

@@ -2,12 +2,40 @@ package bo.gob.aduanda.apps.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+@Table(name="DEPARTAMENTO")
 public class Departamento {
 	
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@NotNull
+	@Column(unique=true)
 	private String nombre;
 	
+	@OneToMany(mappedBy="departamento")
+	@NotEmpty
 	private Set<Ciudad> ciudades;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}

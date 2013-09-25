@@ -1,11 +1,25 @@
 package bo.gob.aduanda.apps.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name="DOMICILIO")
 public class Domicilio {
 	
+	@Id
+	@GeneratedValue
 	private Long id;
 	
+	@ManyToOne
+	@NotNull
 	private Barrio barrio;
 	
+	@NotNull
 	private String calle;
 	
 	private String numero;
@@ -19,6 +33,7 @@ public class Domicilio {
 	private String celular;
 	
 	private String telefono;
+	
 
 	public String getCalle() {
 		return calle;

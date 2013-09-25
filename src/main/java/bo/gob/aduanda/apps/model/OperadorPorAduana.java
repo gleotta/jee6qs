@@ -2,15 +2,45 @@ package bo.gob.aduanda.apps.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name="OPERADOR_POR_ADUANA",uniqueConstraints={@UniqueConstraint(columnNames={"operador", "aduana"})})
 public class OperadorPorAduana {
+
+	@Id
+	@GeneratedValue
+	private Long id;
 	
+	@NotNull
 	private Date fechaAceptacion;
 	
 	private Integer cantTramites;
 	
+	@ManyToOne
+	@NotNull
+	@JoinColumn(name="operador")
 	private Operador operador;
 	
+	@ManyToOne
+	@NotNull
+	@JoinColumn(name="aduana")
 	private Aduana aduana;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Date getFechaAceptacion() {
 		return fechaAceptacion;

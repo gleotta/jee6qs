@@ -1,16 +1,45 @@
 package bo.gob.aduanda.apps.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name="OPERADOR")
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Operador {
 	
+	@Id
+	@GeneratedValue
+	private Long id;
 	
+	@ManyToOne
+	@NotNull
 	private Domicilio domicilioLegal;
 	
+	@OneToMany(mappedBy="operador")
 	private Set<OperadorPorAduana> aduanas;
 	
 	
 	public abstract String getIdentificador();
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Domicilio getDomicilioLegal() {
 		return domicilioLegal;
@@ -52,6 +81,21 @@ public abstract class Operador {
 		} else if (!getIdentificador().equals(other.getIdentificador()))
 			return false;
 		return true;
+	}
+	
+	public static void main(String[] args) {
+		List<Operador> operadores = new ArrayList<Operador>();
+		operadores.add(new OperadorNatural("CI1111"));
+		operadores.add(new OperadorJuridico("NIT1111"));
+		operadores.add(new OperadorNatural("CI2222"));
+		operadores.add(new OperadorNatural("CI333"));
+		operadores.add(new OperadorJuridico("NIT2222"));
+		
+		for (Operador operador : operadores) {
+			System.out.println(operador.getIdentificador());
+		}
+		
+		
 	}
 
 }

@@ -2,14 +2,36 @@ package bo.gob.aduanda.apps.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name="ADUANA")
 public class Aduana {
 	
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+
+	@NotNull
+	@Column(unique=true)
 	private String codigo;
 	
+	@OneToOne
+	@NotNull
 	private Domicilio domicilio;
 	
+	@NotNull
 	private String descripcion;
 	
+	@OneToMany(mappedBy="aduana")
 	private Set<OperadorPorAduana> operadores;
 
 	public String getCodigo() {

@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -41,6 +42,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import bo.gob.aduanda.apps.model.Member;
+import bo.gob.aduanda.apps.model.Operador;
 import bo.gob.aduanda.apps.service.MemberRegistration;
 import bo.gob.aduanda.apps.service.MemberRepository;
 
@@ -64,6 +66,8 @@ public class MemberResourceRESTService {
 
     @Inject
     MemberRegistration registration;
+    
+    @Inject EntityManager em;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -75,6 +79,7 @@ public class MemberResourceRESTService {
     @Path("/{id:[0-9][0-9]*}")
     @Produces(MediaType.APPLICATION_JSON)
     public Member lookupMemberById(@PathParam("id") long id) {
+    	List<Operador> op = em.createQuery("select o form Operador o").getResultList();
         Member member = repository.findById(id);
         if (member == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
