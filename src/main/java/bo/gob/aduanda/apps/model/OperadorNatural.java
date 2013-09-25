@@ -12,6 +12,9 @@ import javax.validation.constraints.NotNull;
 @Table(name="OPERADOR_NATURAL")
 public class OperadorNatural extends Operador {
 
+	
+
+
 	@NotNull
 	@Column(unique=true)
 	private String ci;
@@ -95,4 +98,12 @@ public class OperadorNatural extends Operador {
 		this.empleador = empleador;
 	}
 
+	@Override
+	public String toString() {
+		return "OperadorNatural [ci=" + ci + ", nombre=" + nombre
+				+ ", apellido=" + apellido + ", fechaNacimiento="
+				+ fechaNacimiento + ", empleador=" + empleador + "]";
+	}
+	
+	
 }

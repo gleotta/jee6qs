@@ -96,4 +96,13 @@ public class OperadorJuridico extends Operador{
 		this.operadores = operadores;
 	}
 
+	@Override
+	public String toString() {
+		return "OperadorJuridico [nit=" + nit + ", razonSocial=" + razonSocial
+				+ ", domicilioFisico=" + domicilioFisico
+				+ ", fechaConstitucion=" + fechaConstitucion
+				+ ", cantidadEmpleados=" + cantidadEmpleados + ", operadores="
+				+ operadores + "]";
+	}
+
 }

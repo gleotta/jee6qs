@@ -91,4 +91,11 @@ public class Aduana {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Aduana [id=" + id + ", codigo=" + codigo + ", domicilio="
+				+ domicilio + ", descripcion=" + descripcion + ", operadores="
+				+ operadores + "]";
+	}
+
 }

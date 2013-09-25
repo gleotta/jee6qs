@@ -104,6 +104,13 @@ public class OperadorPorAduana {
 		} else if (!operador.equals(other.operador))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "OperadorPorAduana [id=" + id + ", fechaAceptacion="
+				+ fechaAceptacion + ", cantTramites=" + cantTramites
+				+ ", operador=" + operador + ", aduana=" + aduana + "]";
 	} 
 
 }
