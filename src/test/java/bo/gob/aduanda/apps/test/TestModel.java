@@ -243,6 +243,8 @@ public class TestModel {
 				System.out.println("Operadores por aduana:"+operadorPorAduana);
 			}
 			
+			//Departamento d = em.find(Departamento.class, 1l);
+			//em.remove(d);
 			em.getTransaction().commit();
 			
 		} catch (Exception e) {
