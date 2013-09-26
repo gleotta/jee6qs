@@ -16,17 +16,16 @@
  */
 package bo.gob.aduanda.apps.test;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
+import java.util.List;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import bo.gob.aduanda.apps.model.Member;
-import bo.gob.aduanda.apps.service.MemberRegistration;
-import bo.gob.aduanda.apps.util.Resources;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -34,10 +33,12 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-//@RunWith(Arquillian.class)
-public class MemberRegistrationTest {
-   
-	@Deployment
+import bo.gob.aduanda.apps.model.Operador;
+import bo.gob.aduanda.apps.service.OperadoresService;
+
+@RunWith(Arquillian.class)
+public class OperadoresServiceTest {
+    @Deployment
     public static Archive<?> createTestArchive() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
                 .addPackage("bo.gob.aduanda.apps.model")
@@ -48,26 +49,37 @@ public class MemberRegistrationTest {
                 .addPackage("bo.gob.aduanda.apps.service.impl")
                 .addPackage("bo.gob.aduanda.apps.util")
                 .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
+                .addAsResource("import.sql", "import.sql")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                
                 // Deploy our test datasource
                 .addAsWebInfResource("test-ds.xml");
     }
 
     @Inject
-    MemberRegistration memberRegistration;
+    private OperadoresService operadoresService;
 
     @Inject
     Logger log;
 
-    //@Test
-    public void testRegister() throws Exception {
-        Member newMember = new Member();
-        newMember.setName("Jane Doe");
-        newMember.setEmail("jane@mailinator.com");
-        newMember.setPhoneNumber("2125551234");
-        memberRegistration.register(newMember);
-        assertNotNull(newMember.getId());
-        log.info(newMember.getName() + " was persisted with id " + newMember.getId());
+    @Test
+    public void testObtenerOperadores() throws Exception {
+    	List<Operador> operadores = operadoresService.obtenerOperadores();
+    	assertNotNull(operadores);
+    	assertTrue("La cantidad de operadores no es 5", operadores.size()==5);
+    	for (Operador operador : operadores) {
+			System.out.println("Operador: "+operador);
+		}
+    	
+    }
+    
+    @Test
+    public void testObtenerOperador() throws Exception {
+    	String identificador = "1000889024";
+    	Operador operador = operadoresService.obtenerOperador(identificador);
+    	assertNotNull("Deberia traer el operador "+identificador, operador);
+    	
+    	
     }
 
 }

@@ -101,8 +101,7 @@ public class OperadorJuridico extends Operador{
 		return "OperadorJuridico [nit=" + nit + ", razonSocial=" + razonSocial
 				+ ", domicilioFisico=" + domicilioFisico
 				+ ", fechaConstitucion=" + fechaConstitucion
-				+ ", cantidadEmpleados=" + cantidadEmpleados + ", operadores="
-				+ operadores + "]";
+				+ ", cantidadEmpleados=" + cantidadEmpleados+"]";
 	}
 
 }
