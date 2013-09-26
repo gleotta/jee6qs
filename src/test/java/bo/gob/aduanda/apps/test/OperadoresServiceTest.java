@@ -34,6 +34,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import bo.gob.aduanda.apps.model.Operador;
+import bo.gob.aduanda.apps.model.OperadorJuridico;
+import bo.gob.aduanda.apps.model.OperadorNatural;
 import bo.gob.aduanda.apps.service.OperadoresService;
 
 @RunWith(Arquillian.class)
@@ -78,7 +80,65 @@ public class OperadoresServiceTest {
     	String identificador = "1000889024";
     	Operador operador = operadoresService.obtenerOperador(identificador);
     	assertNotNull("Deberia traer el operador "+identificador, operador);
+    }
+    
+    @Test
+    public void testObtenerOperadoresNaturales() throws Exception {
+    	List<OperadorNatural> operadoresNatu = operadoresService.obtenerOperadoresNaturales();
+    	assertNotNull(operadoresNatu);
+    	assertTrue("La cantidad de operadores no es 3", operadoresNatu.size()==3);
+    	for (Operador operador : operadoresNatu) {
+			System.out.println("Operadores Naturales******: "+operador);
+		}
     	
+    }
+    
+    
+    @Test
+    public void testObtenerOperadoresJuridicos() throws Exception {
+    	List<OperadorJuridico> operadoresNatu = operadoresService.obtenerOperadoresJuridicos();
+    	assertNotNull(operadoresNatu);
+    	assertTrue("La cantidad de operadores no es 2", operadoresNatu.size()==2);
+    	for (Operador operador : operadoresNatu) {
+			System.out.println("Operadores Juridico******: "+operador);
+		}
+    	
+    }
+    
+    @Test
+    public void testEditarOperadorNatural() throws Exception {
+    	String identificador = "197539";
+    	OperadorNatural operador = (OperadorNatural)operadoresService.obtenerOperador(identificador);
+    	operador.setNombre("PRUEBAJUNIT");
+    	operadoresService.editarOperadorNatural(operador);
+    	
+    	OperadorNatural opdb = (OperadorNatural )operadoresService.obtenerOperador(operador.getIdentificador());
+    	assertEquals("No se actualizó el dato crrectamente", operador.getNombre(), opdb.getNombre());
+    	//assertNotNull("Deberia traer el operador "+identificador, operador);
+       	
+    }
+    
+    @Test
+    public void testEditarOperadorJuridicol() throws Exception {
+    	String identificador = "1020304050";
+    	OperadorJuridico operador = (OperadorJuridico) operadoresService.obtenerOperador(identificador);
+    	operador.setRazonSocial("NUEVA RAZON");
+    	operadoresService.editarOperadorJuridico(operador);
+    	
+    	OperadorJuridico opdb = (OperadorJuridico )operadoresService.obtenerOperador(operador.getIdentificador());
+    	assertEquals("No se actualizó el dato crrectamente", operador.getRazonSocial(), operador.getRazonSocial());
+    	//assertNotNull("Deberia traer el operador "+identificador, operador);
+       	
+    }
+    
+    @Test
+    public void testBorrarOperador() throws Exception {
+    	String identificador = "197539";
+    	operadoresService.borrarOperador(identificador);
+    	
+    	OperadorNatural opdb = (OperadorNatural )operadoresService.obtenerOperador(identificador);
+    	assertNull("No se eliminó el registro", opdb);
+
     	
     }
 

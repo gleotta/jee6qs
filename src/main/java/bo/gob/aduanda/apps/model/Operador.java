@@ -1,5 +1,6 @@
 package bo.gob.aduanda.apps.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +22,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @Table(name="OPERADOR")
 @Inheritance(strategy=InheritanceType.JOINED)
 @JsonIgnoreProperties("aduanas")
-public abstract class Operador {
+public abstract class Operador implements Serializable {
 	
 	@Id
 	@GeneratedValue
