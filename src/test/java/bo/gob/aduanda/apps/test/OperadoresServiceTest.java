@@ -18,6 +18,9 @@ package bo.gob.aduanda.apps.test;
 
 import static org.junit.Assert.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -33,6 +36,9 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import bo.gob.aduanda.apps.exceptions.BusinessException;
+import bo.gob.aduanda.apps.model.Barrio;
+import bo.gob.aduanda.apps.model.Domicilio;
 import bo.gob.aduanda.apps.model.Operador;
 import bo.gob.aduanda.apps.model.OperadorJuridico;
 import bo.gob.aduanda.apps.model.OperadorNatural;
@@ -140,6 +146,71 @@ public class OperadoresServiceTest {
     	assertNull("No se eliminó el registro", opdb);
 
     	
+    }
+    
+    @Test
+    public void testAltaOperadorJuridico() throws Exception {
+ 			Domicilio dom1 = new Domicilio();
+			dom1.setBarrio(new Barrio());
+			dom1.getBarrio().setId(3l);
+			
+			dom1.setCalle("Av. 20 de Octubre");
+			dom1.setNumero("2038");
+			dom1.setTelefono("1112222");
+			
+			//cargar 2 operadores juridicos
+			OperadorJuridico op1 = new OperadorJuridico();
+			op1.setDomicilioLegal(dom1);
+			op1.setFechaConstitucion(new Date());
+			op1.setNit("NIT222333");
+			op1.setRazonSocial("Amancay SL");
+			
+			try {
+				operadoresService.altaOperadorJuridico(op1);
+			} catch (BusinessException e) {
+				
+				fail(e.getMessage());
+			}
+			
+			Operador ret = operadoresService.obtenerOperador(op1.getIdentificador());
+			assertNotNull("No se obtuvo operador", ret);
+
+       	
+    }
+    
+    private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyyy");
+    
+    @Test
+    public void testAltaOperadorNatural() throws Exception {
+ 			Domicilio dom1 = new Domicilio();
+			dom1.setBarrio(new Barrio());
+			dom1.getBarrio().setId(4l);
+			
+			dom1.setCalle("Av. 20 de Octubre");
+			dom1.setNumero("2038");
+			dom1.setTelefono("1112222");
+			
+			//cargar 2 operadores juridicos
+			//cargar 3 operadores naturales
+			OperadorNatural on1 = new OperadorNatural();
+			on1.setApellido("Argento");
+			on1.setNombre("Pepe");
+			on1.setCi("CI111112222");
+			on1.setDomicilioLegal(dom1);
+			on1.setFechaNacimiento(dateFormat.parse("01/11/1970"));
+		
+			
+			try {
+				operadoresService.altaOperadorNatural(on1);
+			} catch (BusinessException e) {
+				
+				fail(e.getMessage());
+			}
+			
+			Operador ret = operadoresService.obtenerOperador(on1.getIdentificador());
+			assertNotNull("No se obtuvo operador", ret);
+
+       	
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -28,7 +29,7 @@ public abstract class Operador implements Serializable {
 	@GeneratedValue
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@NotNull
 	private Domicilio domicilioLegal;
 	
