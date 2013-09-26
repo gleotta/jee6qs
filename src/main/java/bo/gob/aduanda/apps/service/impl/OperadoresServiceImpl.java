@@ -15,6 +15,7 @@ import bo.gob.aduanda.apps.exceptions.BusinessException;
 import bo.gob.aduanda.apps.exceptions.TechnicalException;
 import bo.gob.aduanda.apps.integration.ExternalServices;
 import bo.gob.aduanda.apps.model.Operador;
+import bo.gob.aduanda.apps.model.OperadorJuridico;
 import bo.gob.aduanda.apps.model.OperadorNatural;
 import bo.gob.aduanda.apps.service.OperadoresService;
 
@@ -83,6 +84,45 @@ public class OperadoresServiceImpl implements OperadoresService{
 		}
 		
 		return ret;
+		
+	}
+
+	@Override
+	public List<Operador> obtenerOperadoresJuridicos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Operador> obtenerOperadoresNaturales() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void altaOperadorJuridico(OperadorJuridico op)
+			throws BusinessException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void editarOperadorNatural(OperadorNatural op)
+			throws BusinessException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void editarOperadorJuridico(OperadorJuridico op)
+			throws BusinessException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void borrarOperador(String identificadoro) throws BusinessException {
+		// TODO Auto-generated method stub
 		
 	}
 	
