@@ -88,13 +88,13 @@ public class OperadoresServiceImpl implements OperadoresService{
 	}
 
 	@Override
-	public List<Operador> obtenerOperadoresJuridicos() {
+	public List<OperadorJuridico> obtenerOperadoresJuridicos() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Operador> obtenerOperadoresNaturales() {
+	public List<OperadorNatural> obtenerOperadoresNaturales() {
 		// TODO Auto-generated method stub
 		return null;
 	}

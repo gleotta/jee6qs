@@ -17,9 +17,9 @@ public interface OperadoresService {
 	//Listados
 	public List<Operador> obtenerOperadores();
 	
-	public List<Operador> obtenerOperadoresJuridicos();
+	public List<OperadorJuridico> obtenerOperadoresJuridicos();
 	
-	public List<Operador> obtenerOperadoresNaturales();
+	public List<OperadorNatural> obtenerOperadoresNaturales();
 	
 	public Operador obtenerOperador(String identificador);
 	
@@ -35,7 +35,7 @@ public interface OperadoresService {
 	
 	
 	//baja
-	public void borrarOperador(String identificadoro) throws BusinessException;
+	public void borrarOperador(String identificador) throws BusinessException;
 	
 	
 	
