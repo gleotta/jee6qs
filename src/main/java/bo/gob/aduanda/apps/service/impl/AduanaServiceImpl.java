@@ -2,11 +2,16 @@ package bo.gob.aduanda.apps.service.impl;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 import bo.gob.aduanda.apps.exceptions.BusinessException;
 import bo.gob.aduanda.apps.model.Aduana;
 import bo.gob.aduanda.apps.model.Operador;
 import bo.gob.aduanda.apps.service.AduanasService;
 
+
+//TODO agregar implementacion
+@Stateless
 public class AduanaServiceImpl implements AduanasService {
 
 	@Override

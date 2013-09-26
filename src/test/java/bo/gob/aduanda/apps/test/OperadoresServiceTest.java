@@ -190,8 +190,6 @@ public class OperadoresServiceTest {
 			dom1.setNumero("2038");
 			dom1.setTelefono("1112222");
 			
-			//cargar 2 operadores juridicos
-			//cargar 3 operadores naturales
 			OperadorNatural on1 = new OperadorNatural();
 			on1.setApellido("Argento");
 			on1.setNombre("Pepe");
