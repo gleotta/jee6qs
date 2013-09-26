@@ -14,9 +14,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @Entity
 @Table(name="OPERADOR")
 @Inheritance(strategy=InheritanceType.JOINED)
+@JsonIgnoreProperties("aduanas")
 public abstract class Operador {
 	
 	@Id

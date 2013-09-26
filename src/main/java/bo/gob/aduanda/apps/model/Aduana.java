@@ -11,8 +11,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @Entity
 @Table(name="ADUANA")
+@JsonIgnoreProperties("operadores")
 public class Aduana {
 	
 	@Id

@@ -14,10 +14,13 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="CIUDAD", uniqueConstraints={@UniqueConstraint(columnNames={"nombre", "departamento"})})
+@JsonIgnoreProperties("barrios")
 public class Ciudad {
 	
 	@Id
@@ -28,7 +31,7 @@ public class Ciudad {
 	@Column(name="nombre")
 	private String nombre;
 	
-	@OneToMany(mappedBy="ciudad", cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="ciudad",cascade={CascadeType.ALL})
 	@NotEmpty
 	private Set<Barrio> barrios;
 	
@@ -46,7 +49,7 @@ public class Ciudad {
 		this.nombre = nombre;
 	}
 
-	@OneToMany(mappedBy="ciudad")
+
 	public Set<Barrio> getBarrios() {
 		return barrios;
 	}

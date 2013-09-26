@@ -41,7 +41,6 @@ import bo.gob.aduanda.apps.service.OperadoresService;
  */
 @Path("/operadores")
 @RequestScoped
-
 public class OperadoresServiceREST {
 
     @Inject

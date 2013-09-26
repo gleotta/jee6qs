@@ -8,8 +8,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @Entity
 @Table(name="OPERADOR_NATURAL")
+@JsonIgnoreProperties("aduanas")
 public class OperadorNatural extends Operador {
 
 	
