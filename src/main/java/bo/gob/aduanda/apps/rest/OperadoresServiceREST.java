@@ -37,6 +37,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import bo.gob.aduanda.apps.exceptions.BusinessException;
 import bo.gob.aduanda.apps.model.Member;
@@ -111,6 +112,13 @@ public class OperadoresServiceREST {
   	@Produces(MediaType.APPLICATION_JSON)
   	public void altaOperadorNatural(OperadorNatural op) {
   		
+  		try {
+			service.altaOperadorNatural(op);
+		} catch (BusinessException e) {
+			throw new WebApplicationException(e,Response.Status.CONFLICT);
+		} catch (Exception e) {
+			throw new WebApplicationException(e,Response.Status.INTERNAL_SERVER_ERROR);
+		}
   		
   	};
   	
@@ -118,8 +126,23 @@ public class OperadoresServiceREST {
   	@Path("/juridico/create")
   	@Consumes(MediaType.APPLICATION_JSON)
   	@Produces(MediaType.APPLICATION_JSON)
-  	public void altaOperadorJuridico(OperadorJuridico op) {
-  		
+  	public Response altaOperadorJuridico(OperadorJuridico op) {
+  		try {
+			service.altaOperadorJuridico(op);
+			return Response.ok().build();
+		} catch (BusinessException e) {
+			Map<String, String> ret = new HashMap<String, String>();
+			ret.put("message", e.getCause().getMessage());
+			ret.put("type", e.getCause().getClass().getName());
+			Response r = Response.status(Status.CONFLICT).entity(ret).build();
+			return r;
+		} catch (Exception e) {
+			Map<String, String> ret = new HashMap<String, String>();
+			ret.put("message", e.getCause().getMessage());
+			ret.put("type", e.getCause().getClass().getName());
+			Response r = Response.status(Status.INTERNAL_SERVER_ERROR).entity(ret).build();
+			return r;
+		}
   		
   	};
   	
@@ -128,8 +151,8 @@ public class OperadoresServiceREST {
   	@Path("/natural/update")
   	@Consumes(MediaType.APPLICATION_JSON)
   	@Produces(MediaType.APPLICATION_JSON)
-  	public void editarOperadorNatural(OperadorNatural op) {
-  		
+  	public Response editarOperadorNatural(OperadorNatural op) {
+  		return null;
   	}
   	
   	
@@ -137,8 +160,8 @@ public class OperadoresServiceREST {
   	@Path("/juridico/update")
   	@Consumes(MediaType.APPLICATION_JSON)
   	@Produces(MediaType.APPLICATION_JSON)
-  	public void editarOperadorJuridico(OperadorJuridico op) {
-  		
+  	public Response editarOperadorJuridico(OperadorJuridico op) {
+  		return null;
   	};
   	
   	
@@ -146,8 +169,8 @@ public class OperadoresServiceREST {
   	@Path("/delete")
   	@Consumes(MediaType.APPLICATION_JSON)
   	@Produces(MediaType.APPLICATION_JSON)
-  	public void borrarOperador(String identificador) {
-  		
+  	public Response borrarOperador(String identificador) {
+		return null;
   	};
   	
 }
