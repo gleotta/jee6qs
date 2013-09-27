@@ -119,14 +119,23 @@ public class OperadoresServiceREST {
   	@Path("/natural/create")
   	@Consumes(MediaType.APPLICATION_JSON)
   	@Produces(MediaType.APPLICATION_JSON)
-  	public void altaOperadorNatural(OperadorNatural op) {
+  	public Response altaOperadorNatural(OperadorNatural op) {
   		
   		try {
 			service.altaOperadorNatural(op);
+			return Response.ok().build();
 		} catch (BusinessException e) {
-			throw new WebApplicationException(e,Response.Status.CONFLICT);
+			Map<String, String> ret = new HashMap<String, String>();
+			ret.put("message", e.getCause().getMessage());
+			ret.put("type", e.getCause().getClass().getName());
+			Response r = Response.status(Status.CONFLICT).entity(ret).build();
+			return r;
 		} catch (Exception e) {
-			throw new WebApplicationException(e,Response.Status.INTERNAL_SERVER_ERROR);
+			Map<String, String> ret = new HashMap<String, String>();
+			ret.put("message", e.getCause().getMessage());
+			ret.put("type", e.getCause().getClass().getName());
+			Response r = Response.status(Status.INTERNAL_SERVER_ERROR).entity(ret).build();
+			return r;
 		}
   		
   	};
