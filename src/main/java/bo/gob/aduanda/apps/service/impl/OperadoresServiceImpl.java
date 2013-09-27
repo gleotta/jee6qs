@@ -138,7 +138,7 @@ public class OperadoresServiceImpl implements OperadoresService {
 		
 		
 
-		if (op.getCi() != opl.getCi())
+		if (!op.getCi().equals(opl.getCi()))
 
 			throw new BusinessException("El ci no puede cambiar");
 
@@ -162,7 +162,7 @@ public class OperadoresServiceImpl implements OperadoresService {
 
 		OperadorJuridico ojl = em.find(OperadorJuridico.class, op.getId());
 
-		if (op.getNit() != ojl.getNit())
+		if (!op.getNit().equals(ojl.getNit()))
 
 			throw new BusinessException("El nit no puede distinto al anterior");
 

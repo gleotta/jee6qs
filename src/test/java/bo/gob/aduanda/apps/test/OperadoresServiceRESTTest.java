@@ -162,6 +162,32 @@ public class OperadoresServiceRESTTest {
 
 	//@Test
 	public void testEditarOperadorJuridico() {
+		/*
+		 *{
+			  "nit":"1020304050",
+			  "razonSocial":"AGC SRL UPDATED",
+			  "domicilioFisico":null,
+			  "fechaConstitucion":909892800000,
+			  "cantidadEmpleados":null,
+			  "id":14,
+			  "domicilioLegal":{
+			    "id":9,
+			    "calle":"Calle Abdon Saavedra",
+			    "numero":"1925",
+			    "edificio":"Los Laureles",
+			    "piso":"P.B.",
+			    "oficina":"Of. NÃ‚Âº 1",
+			    "celular":null,
+			    "telefono":"2413325",
+			    "barrio":{
+			      "id":4
+			    }
+			  }
+			}
+		 * */
+		
+		
+		
 		fail("Not yet implemented");
 	}
 

@@ -90,7 +90,7 @@ public class OperadoresServiceREST {
  			Map<String, String> ret = new HashMap<String, String>();
 			ret.put("message", e.getCause().getMessage());
 			ret.put("type", e.getCause().getClass().getName());
-			ret.put("status", "500");
+			ret.put("status", "404");
 			Response r = Response.status(Response.Status.NOT_FOUND).entity(ret).build();
         	throw new WebApplicationException(r);
  		}
@@ -100,7 +100,16 @@ public class OperadoresServiceREST {
     @Path("/juridico/list")
     @Produces(MediaType.APPLICATION_JSON)
   	public List<OperadorJuridico> obtenerOperadoresJuridicos() {
-  		return null;
+  		try {
+  			return service.obtenerOperadoresJuridicos();
+  		} catch (Exception e) {
+  			Map<String, String> ret = new HashMap<String, String>();
+ 			ret.put("message", e.getCause().getMessage());
+ 			ret.put("type", e.getCause().getClass().getName());
+ 			ret.put("status", "500");
+ 			Response r = Response.status(Response.Status.NOT_FOUND).entity(ret).build();
+         	throw new WebApplicationException(r);
+  		}
   	};
   	
   	
@@ -109,7 +118,16 @@ public class OperadoresServiceREST {
     @Produces(MediaType.APPLICATION_JSON)
   	public List<OperadorNatural> obtenerOperadoresNaturales() {
   		
-		return null;
+		 try {
+	 			return service.obtenerOperadoresNaturales();
+	 		} catch (Exception e) {
+	 			Map<String, String> ret = new HashMap<String, String>();
+				ret.put("message", e.getCause().getMessage());
+				ret.put("type", e.getCause().getClass().getName());
+				ret.put("status", "500");
+				Response r = Response.status(Response.Status.NOT_FOUND).entity(ret).build();
+	        	throw new WebApplicationException(r);
+	 		}
   		
   	};
   	
@@ -170,7 +188,22 @@ public class OperadoresServiceREST {
   	@Consumes(MediaType.APPLICATION_JSON)
   	@Produces(MediaType.APPLICATION_JSON)
   	public Response editarOperadorNatural(OperadorNatural op) {
-  		return null;
+  		try {
+			service.editarOperadorNatural(op);
+			return Response.ok().build();
+		} catch (BusinessException e) {
+			Map<String, String> ret = new HashMap<String, String>();
+			ret.put("message", e.getMessage());
+			ret.put("type", e.getClass().getName());
+			Response r = Response.status(Status.CONFLICT).entity(ret).build();
+			return r;
+		} catch (Exception e) {
+			Map<String, String> ret = new HashMap<String, String>();
+			ret.put("message", e.getCause().getMessage());
+			ret.put("type", e.getCause().getClass().getName());
+			Response r = Response.status(Status.INTERNAL_SERVER_ERROR).entity(ret).build();
+			return r;
+		}
   	}
   	
   	
@@ -179,7 +212,22 @@ public class OperadoresServiceREST {
   	@Consumes(MediaType.APPLICATION_JSON)
   	@Produces(MediaType.APPLICATION_JSON)
   	public Response editarOperadorJuridico(OperadorJuridico op) {
-  		return null;
+  		try {
+			service.editarOperadorJuridico(op);
+			return Response.ok().build();
+		} catch (BusinessException e) {
+			Map<String, String> ret = new HashMap<String, String>();
+			ret.put("message", e.getMessage());
+			ret.put("type", e.getClass().getName());
+			Response r = Response.status(Status.CONFLICT).entity(ret).build();
+			return r;
+		} catch (Exception e) {
+			Map<String, String> ret = new HashMap<String, String>();
+			ret.put("message", e.getCause().getMessage());
+			ret.put("type", e.getCause().getClass().getName());
+			Response r = Response.status(Status.INTERNAL_SERVER_ERROR).entity(ret).build();
+			return r;
+		}
   	};
   	
   	
@@ -188,7 +236,23 @@ public class OperadoresServiceREST {
   	@Consumes(MediaType.APPLICATION_JSON)
   	@Produces(MediaType.APPLICATION_JSON)
   	public Response borrarOperador(String identificador) {
-		return null;
+		try {
+			//Operador op = service.obtenerOperador(identificador);
+			service.borrarOperador(identificador);
+			return Response.ok().build();
+		} catch (BusinessException e) {
+			Map<String, String> ret = new HashMap<String, String>();
+			ret.put("message", e.getCause().getMessage());
+			ret.put("type", e.getCause().getClass().getName());
+			Response r = Response.status(Status.CONFLICT).entity(ret).build();
+			return r;
+		} catch (Exception e) {
+			Map<String, String> ret = new HashMap<String, String>();
+			ret.put("message", e.getCause().getMessage());
+			ret.put("type", e.getCause().getClass().getName());
+			Response r = Response.status(Status.INTERNAL_SERVER_ERROR).entity(ret).build();
+			return r;
+		}
   	};
   	
 }
