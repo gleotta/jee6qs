@@ -70,7 +70,11 @@ public class OperadoresServiceREST {
     public Operador obtenerOperador(@PathParam("identificador") String identificador) {
         Operador operador = service.obtenerOperador(identificador);
         if (operador == null) {
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        	Map<String, String> ret = new HashMap<String, String>();
+			ret.put("message", "No existe el operador");
+			ret.put("status", "404");
+			Response r = Response.status(Response.Status.NOT_FOUND).entity(ret).build();
+        	throw new WebApplicationException(r);
         }
         return operador;
     }
@@ -83,7 +87,12 @@ public class OperadoresServiceREST {
     	 try {
  			return service.obtenerOperadores();
  		} catch (Exception e) {
- 			throw new WebApplicationException(e,Response.Status.INTERNAL_SERVER_ERROR);
+ 			Map<String, String> ret = new HashMap<String, String>();
+			ret.put("message", e.getCause().getMessage());
+			ret.put("type", e.getCause().getClass().getName());
+			ret.put("status", "500");
+			Response r = Response.status(Response.Status.NOT_FOUND).entity(ret).build();
+        	throw new WebApplicationException(r);
  		}
   	};
   	
