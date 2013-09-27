@@ -17,18 +17,15 @@ import com.sun.istack.logging.Logger;
 import bo.gob.aduanda.apps.model.Operador;
 
 public class OperadoresServiceRESTTest {
-	
 
+	private static String baseUri = "http://localhost:8080/jee6qs/rest";
 
-    private static String baseUri = "http://localhost:8080/jee6qs/rest";
+	private static Logger log = Logger
+			.getLogger(OperadoresServiceRESTTest.class);
 
-    private static Logger log = Logger.getLogger(OperadoresServiceRESTTest.class);
-    
-    
 	@Before
 	public void setUp() throws Exception {
-		
-		
+
 	}
 
 	@After
@@ -37,50 +34,48 @@ public class OperadoresServiceRESTTest {
 
 	@Test
 	public void testObtenerOperador() {
-		String command="/operador/id/1971674";
-		ClientRequest request = new ClientRequest(baseUri+command);
+		String command = "/operador/id/1971674";
+		ClientRequest request = new ClientRequest(baseUri + command);
 		try {
 			ClientResponse<String> response = request.get();
-			if (response.getStatus()!=200) {
-				fail("Error HTTP: "+response.getStatus());
+			if (response.getStatus() != 200) {
+				fail("Error HTTP: " + response.getStatus());
 			}
 			String resultado = response.getEntity(String.class);
 			assertNotNull(resultado);
-			log.info(resultado.toString()+"\n");
-			
-			
+			log.info(resultado.toString() + "\n");
+
 		} catch (Exception e) {
 			fail(e.getMessage());
 		}
-		
+
 	}
 
 	@Test
 	public void testObtenerOperadores() {
-		String command="/operador/list";
-		ClientRequest request = new ClientRequest(baseUri+command);
+		String command = "/operador/list";
+		ClientRequest request = new ClientRequest(baseUri + command);
 		try {
 			ClientResponse<String> response = request.get();
-			if (response.getStatus()!=200) {
-				fail("Error HTTP: "+response.getStatus());
+			if (response.getStatus() != 200) {
+				fail("Error HTTP: " + response.getStatus());
 			}
 			String resultado = response.getEntity(String.class);
 			assertNotNull(resultado);
-			log.info(resultado.toString()+"\n");
-			
-			
+			log.info(resultado.toString() + "\n");
+
 		} catch (Exception e) {
 			fail(e.getMessage());
 		}
 
 	}
 
-	@Test
+	//@Test
 	public void testObtenerOperadoresJuridicos() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+	//@Test
 	public void testObtenerOperadoresNaturales() {
 		fail("Not yet implemented");
 	}
@@ -88,69 +83,89 @@ public class OperadoresServiceRESTTest {
 	@Test
 	public void testAltaOperadorNatural() {
 		/*
-		 * 
-		 * {
-			  "nombre":"Nueva Persona",
-			  "ci":"1111",
-			  "apellido":"MERCADO RODAS",
-			  "fechaNacimiento":26280000000,
-			  "domicilioLegal":{
-			    "calle":"CALLE 12",
-			    "numero":"21",
-			    "edificio":null,
-			    "piso":null,
-			    "oficina":null,
-			    "celular":null,
-			    "telefono":"2912527",
-			    "barrio":{
-			      "id":5
-			    }
-			  }
-			}
+		 * { "nombre":"Nueva Persona", "ci":"1111", "apellido":"MERCADO RODAS",
+		 * "fechaNacimiento":26280000000, "domicilioLegal":{ "calle":"CALLE 12",
+		 * "numero":"21", "edificio":null, "piso":null, "oficina":null,
+		 * "celular":null, "telefono":"2912527", "barrio":{ "id":5 } } }
 		 */
-		
-		fail("Not yet implemented");
+
+		String command = "/operador/natural/create";
+		ClientRequest request = new ClientRequest(baseUri + command);
+		try {
+			String operadorNaturalJson = "{  \"nombre\":\"Nueva Persona\",  \"ci\":\""+System.currentTimeMillis()+"\", "
+					+ " \"apellido\":\"MERCADO RODAS\",  \"fechaNacimiento\":26280000000, "
+					+ " \"domicilioLegal\":{   \"calle\":\"CALLE 15\",   "
+					+ " \"numero\":\"21\",    \"edificio\":null,    \"piso\":null,   "
+					+ " \"oficina\":null,    \"celular\":null,    \"telefono\":\"2912527\", "
+					+ "   \"barrio\":{      \"id\":5    }  }}";
+			request.body("application/json", operadorNaturalJson);
+			ClientResponse<String> response = request.post();
+			
+			if (response.getStatus() != 200) {
+				fail("Error HTTP: " + response.getStatus());
+			}
+			String resultado = response.getEntity(String.class);
+			log.info(resultado);
+			assertEquals(resultado,"");
+			
+
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}
+
 	}
 
 	@Test
 	public void testAltaOperadorJuridico() {
-		
+
 		/*
-		 {
-		   "nit":"111111",
-		   "razonSocial":"Nueva Empresa Operadora",
-		   "fechaConstitucion":961041600000,
-		   "domicilioLegal":{
-		      "calle":"Calle Abdon Saavedra",
-		      "numero":"1925",
-		      "edificio":"Los Laureles",
-		      "piso":"P.B.",
-		      "oficina":"Of. n 1",
-		      "celular":null,
-		      "telefono":"2413325",
-		      "barrio":{
-		         "id":4
-		      }
-		   }
-		}
+		 * { "nit":"111111", "razonSocial":"Nueva Empresa Operadora",
+		 * "fechaConstitucion":961041600000, "domicilioLegal":{
+		 * "calle":"Calle Abdon Saavedra", "numero":"1925",
+		 * "edificio":"Los Laureles", "piso":"P.B.", "oficina":"Of. n 1",
+		 * "celular":null, "telefono":"2413325", "barrio":{ "id":4 } } }
 		 */
-		  
-		 
-		
-		fail("Not yet implemented");
+
+
+
+		String command = "/operador/juridico/create";
+		ClientRequest request = new ClientRequest(baseUri + command);
+		try {
+			String operadorJuridicoJson = "{ \"nit\":\""+ System.currentTimeMillis() +"\", \"razonSocial\":\"Nueva Empresa Operadora\","
+					+ "\"fechaConstitucion\":961041600000, "
+					+ "\"domicilioLegal\":{\"calle\":\"Calle Abdon Saavedra2\","
+					+ " \"numero\":\"1925\",\"edificio\":\"Los Laureles\","
+					+ " \"piso\":\"P.B.\", \"oficina\":\"Of. n 1\","
+					+ "\"celular\":null, \"telefono\":\"2413325\", "
+					+ "\"barrio\":{ \"id\":4 } } }";
+			System.out.println(operadorJuridicoJson);
+			request.body("application/json", operadorJuridicoJson);
+			ClientResponse<String> response = request.post();
+			
+			if (response.getStatus() != 200) {
+				fail("Error HTTP: " + response.getStatus());
+			}
+			String resultado = response.getEntity(String.class);
+			log.info(resultado);
+			assertEquals(resultado,"");
+			
+
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}
 	}
 
-	@Test
+	//@Test
 	public void testEditarOperadorNatural() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+	//@Test
 	public void testEditarOperadorJuridico() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+	//@Test
 	public void testBorrarOperador() {
 		fail("Not yet implemented");
 	}
